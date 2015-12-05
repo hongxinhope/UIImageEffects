@@ -1,27 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vSt-l6-2id">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Page Content View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UIImageEffects" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageContentViewController" id="BYZ-38-t0r" customClass="PageContentViewController" customModule="UIImageEffects" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ExampleImage" translatesAutoresizingMaskIntoConstraints="NO" id="Bpc-7C-ts2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light Effect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbR-ri-jeT">
+                                <rect key="frame" x="131.5" y="27" width="112.5" height="26.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KbR-ri-jeT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="7" id="SEY-GO-jnm"/>
+                            <constraint firstItem="Bpc-7C-ts2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U9a-T8-84A"/>
+                            <constraint firstItem="KbR-ri-jeT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X6E-My-skL"/>
+                            <constraint firstItem="Bpc-7C-ts2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="XGR-a3-1BN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bpc-7C-ts2" secondAttribute="bottom" id="jrr-ig-Z1p"/>
+                            <constraint firstAttribute="trailing" secondItem="Bpc-7C-ts2" secondAttribute="trailing" id="l9c-qO-BqL"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imageView" destination="Bpc-7C-ts2" id="RtI-zi-WZI"/>
+                        <outlet property="titleLabel" destination="KbR-ri-jeT" id="uD6-U5-e48"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-219.5" y="278.5"/>
+        </scene>
+        <!--Image Effects View Controller-->
+        <scene sceneID="a9m-UP-vIV">
+            <objects>
+                <viewController id="vSt-l6-2id" customClass="ImageEffectsViewController" customModule="UIImageEffects" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D7N-s3-xpK"/>
+                        <viewControllerLayoutGuide type="bottom" id="mgw-F6-YbU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VRE-KO-aJr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WuF-dL-8xs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-780.5" y="278.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ExampleImage" width="375" height="667"/>
+    </resources>
 </document>

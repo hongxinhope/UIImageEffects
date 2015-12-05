@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		D3CCB8E31C12CA8E0090EF3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8E21C12CA8E0090EF3E /* AppDelegate.swift */; };
-		D3CCB8E51C12CA8E0090EF3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8E41C12CA8E0090EF3E /* ViewController.swift */; };
+		D3CCB8E51C12CA8E0090EF3E /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8E41C12CA8E0090EF3E /* PageContentViewController.swift */; };
 		D3CCB8E81C12CA8E0090EF3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB8E61C12CA8E0090EF3E /* Main.storyboard */; };
 		D3CCB8EA1C12CA8E0090EF3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB8E91C12CA8E0090EF3E /* Assets.xcassets */; };
 		D3CCB8F61C12CC1A0090EF3E /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8F51C12CC1A0090EF3E /* UIImageEffects.swift */; };
+		D3CCB8F81C134C870090EF3E /* ImageEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8F71C134C870090EF3E /* ImageEffectsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3CCB8DF1C12CA8E0090EF3E /* UIImageEffects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIImageEffects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB8E21C12CA8E0090EF3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3CCB8E41C12CA8E0090EF3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3CCB8E41C12CA8E0090EF3E /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		D3CCB8E71C12CA8E0090EF3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3CCB8E91C12CA8E0090EF3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3CCB8EE1C12CA8E0090EF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3CCB8F51C12CC1A0090EF3E /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageEffects.swift; path = UIImageEffects/UIImageEffects.swift; sourceTree = SOURCE_ROOT; };
+		D3CCB8F71C134C870090EF3E /* ImageEffectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEffectsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +58,8 @@
 			isa = PBXGroup;
 			children = (
 				D3CCB8E21C12CA8E0090EF3E /* AppDelegate.swift */,
-				D3CCB8E41C12CA8E0090EF3E /* ViewController.swift */,
+				D3CCB8F71C134C870090EF3E /* ImageEffectsViewController.swift */,
+				D3CCB8E41C12CA8E0090EF3E /* PageContentViewController.swift */,
 				D3CCB8E61C12CA8E0090EF3E /* Main.storyboard */,
 				D3CCB8E91C12CA8E0090EF3E /* Assets.xcassets */,
 				D3CCB8EE1C12CA8E0090EF3E /* Info.plist */,
@@ -142,8 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3CCB8E51C12CA8E0090EF3E /* ViewController.swift in Sources */,
+				D3CCB8E51C12CA8E0090EF3E /* PageContentViewController.swift in Sources */,
 				D3CCB8E31C12CA8E0090EF3E /* AppDelegate.swift in Sources */,
+				D3CCB8F81C134C870090EF3E /* ImageEffectsViewController.swift in Sources */,
 				D3CCB8F61C12CC1A0090EF3E /* UIImageEffects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
