@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3CCB8DE1C12CA8E0090EF3E"
-               BuildableName = "UIImageEffects.app"
+               BlueprintIdentifier = "D389BC6A1C147BE10083B35F"
+               BuildableName = "UIImageEffects.framework"
                BlueprintName = "UIImageEffects"
                ReferencedContainer = "container:UIImageEffects.xcodeproj">
             </BuildableReference>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3CCB8DE1C12CA8E0090EF3E"
-            BuildableName = "UIImageEffects.app"
-            BlueprintName = "UIImageEffects"
-            ReferencedContainer = "container:UIImageEffects.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3CCB8DE1C12CA8E0090EF3E"
-            BuildableName = "UIImageEffects.app"
+            BlueprintIdentifier = "D389BC6A1C147BE10083B35F"
+            BuildableName = "UIImageEffects.framework"
             BlueprintName = "UIImageEffects"
             ReferencedContainer = "container:UIImageEffects.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3CCB8DE1C12CA8E0090EF3E"
-            BuildableName = "UIImageEffects.app"
+            BlueprintIdentifier = "D389BC6A1C147BE10083B35F"
+            BuildableName = "UIImageEffects.framework"
             BlueprintName = "UIImageEffects"
             ReferencedContainer = "container:UIImageEffects.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

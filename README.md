@@ -9,6 +9,12 @@ UIImageEffects is based on Apple's UIImage category in sample code [Blurring and
 
 ##How To Get Started
 
+###Carthage
+Specify UIImageEffects in your Cartfile:
+```ogdl 
+github "hongxinhope/UIImageEffects"
+```
+
 ###Usage
 ##### Light Effect
 ```swift 

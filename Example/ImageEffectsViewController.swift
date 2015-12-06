@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIImageEffects
 
 class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSource {
     var pageTitles = [String]()

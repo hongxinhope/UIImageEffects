@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:UIImageEffects.xcodeproj">
+      location = "self:/Users/hongxin/Developer/UIImageEffects/UIImageEffectsExample.xcodeproj">
    </FileRef>
 </Workspace>
