@@ -61,8 +61,11 @@ class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSour
     // MARK: - UIPageViewController data source
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let viewController = viewController as? PageContentViewController {
-            if viewController.pageIndex == 0 || viewController.pageIndex == NSNotFound {
+            if viewController.pageIndex == NSNotFound {
                 return nil
+            }
+            if viewController.pageIndex == 0  {
+                return viewControllerAtIndex(pageTitles.count - 1)
             }
             return viewControllerAtIndex(viewController.pageIndex - 1)
         }
@@ -71,8 +74,11 @@ class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSour
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         if let viewController = viewController as? PageContentViewController {
-            if viewController.pageIndex == pageTitles.count || viewController.pageIndex == NSNotFound {
+            if viewController.pageIndex == NSNotFound {
                 return nil
+            }
+            if viewController.pageIndex == pageTitles.count - 1 {
+                return viewControllerAtIndex(0)
             }
             return viewControllerAtIndex(viewController.pageIndex + 1)
         }

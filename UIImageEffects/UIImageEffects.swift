@@ -53,7 +53,7 @@ This extension is based on Apple's UIImage category in sample code "Blurring and
 https://developer.apple.com/library/ios/samplecode/UIImageEffects/Introduction/Intro.html#//apple_ref/doc/uid/DTS40013396
 
 Created by Xin Hong on 15/12/5.
-https://github.com/hongxinhope
+https://github.com/hongxinhope/UIImageEffects
 */
 
 
