@@ -23,7 +23,7 @@ class PageContentViewController: UIViewController {
     }
 
     // MARK: - Helper
-    private func setupUI() {
+    fileprivate func setupUI() {
         titleLabel.text = titleText
         imageView.image = image
     }

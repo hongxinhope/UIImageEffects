@@ -12,7 +12,7 @@ import UIImageEffects
 class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSource {
     var pageTitles = [String]()
     var images = [UIImage]()
-    let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: [:])
+    let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
 
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -23,36 +23,36 @@ class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSour
     }
 
     // MARK: - Helper
-    private func initData() {
+    fileprivate func initData() {
         pageTitles = ["Origin", "Light Effect", "Extra Light Effect", "Dark Effect", "Cyan Tint Color"]
 
-        let originalImage = UIImage(named: "ExampleImage")
-        let lightEffectImage = originalImage?.applyLightEffect() ?? originalImage
-        let extraLightEffectImage = originalImage?.applyExtraLightEffect() ?? originalImage
-        let darkEffectImage = originalImage?.applyDarkEffect() ?? originalImage
-        let tintColorImage = originalImage?.applyTintEffect(tintColor: UIColor.cyanColor()) ?? originalImage
-        images = [originalImage!, lightEffectImage!, extraLightEffectImage!, darkEffectImage!, tintColorImage!]
+        let originalImage = #imageLiteral(resourceName: "ExampleImage")
+        let lightEffectImage = originalImage.applyLightEffect() ?? originalImage
+        let extraLightEffectImage = originalImage.applyExtraLightEffect() ?? originalImage
+        let darkEffectImage = originalImage.applyDarkEffect() ?? originalImage
+        let tintColorImage = originalImage.applyTintEffect(with: UIColor.cyan) ?? originalImage
+        images = [originalImage, lightEffectImage, extraLightEffectImage, darkEffectImage, tintColorImage]
     }
 
-    private func setupUI() {
+    fileprivate func setupUI() {
         pageViewController.dataSource = self
         pageViewController.view.frame = view.frame
 
-        let originalImageViewController = viewControllerAtIndex(0)
+        let originalImageViewController = viewControllerAt(0)
         let viewControllers = [originalImageViewController!]
-        pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
+        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
 
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+        pageViewController.didMove(toParentViewController: self)
     }
 
-    private func viewControllerAtIndex(index:  Int) -> PageContentViewController? {
+    fileprivate func viewControllerAt(_ index:  Int) -> PageContentViewController? {
         if pageTitles.count == 0 || index >= pageTitles.count {
             return nil
         }
 
-        let pageContentViewController = storyboard!.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
+        let pageContentViewController = storyboard!.instantiateViewController(withIdentifier: "PageContentViewController") as! PageContentViewController
         pageContentViewController.titleText = pageTitles[index]
         pageContentViewController.image = images[index]
         pageContentViewController.pageIndex = index
@@ -60,37 +60,37 @@ class ImageEffectsViewController: UIViewController, UIPageViewControllerDataSour
     }
 
     // MARK: - UIPageViewController data source
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let viewController = viewController as? PageContentViewController {
             if viewController.pageIndex == NSNotFound {
                 return nil
             }
             if viewController.pageIndex == 0  {
-                return viewControllerAtIndex(pageTitles.count - 1)
+                return viewControllerAt(pageTitles.count - 1)
             }
-            return viewControllerAtIndex(viewController.pageIndex - 1)
+            return viewControllerAt(viewController.pageIndex - 1)
         }
         return nil
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let viewController = viewController as? PageContentViewController {
             if viewController.pageIndex == NSNotFound {
                 return nil
             }
             if viewController.pageIndex == pageTitles.count - 1 {
-                return viewControllerAtIndex(0)
+                return viewControllerAt(0)
             }
-            return viewControllerAtIndex(viewController.pageIndex + 1)
+            return viewControllerAt(viewController.pageIndex + 1)
         }
         return nil
     }
 
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pageTitles.count
     }
 
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
 }

@@ -10,7 +10,7 @@ UIImageEffects is based on Apple's UIImage category in sample code [Blurring and
 ##How To Get Started
 
 ###Carthage
-Specify UIImageEffects in your Cartfile:
+Specify "UIImageEffects" in your ```Cartfile```:
 ```ogdl 
 github "hongxinhope/UIImageEffects"
 ```
@@ -33,12 +33,12 @@ let darkEffectImage = originalImage.applyDarkEffect()
 
 #####Tint Effect
 ```swift 
-let tintColorImage = originalImage.applyTintEffect(tintColor: UIColor.cyanColor())
+let tintColorImage = originalImage.applyTintEffect(with: UIColor.cyan)
 ```
 
 ##### Custom
 ```swift 
-let customEffectImage = originalImage.applyBlur(blurRadius: 30, tintColor: UIColor(white: 1, alpha: 0.3), saturationDeltaFactor: 1.5)
+let customEffectImage = originalImage.applyBlur(radius: 30, tintColor: UIColor(white: 1, alpha: 0.3), saturationDeltaFactor: 1.5)
 ```
 
 ## Minimum Requirement

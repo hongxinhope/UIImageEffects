@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D389BC7F1C147D5C0083B35F /* UIImageEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389BC7E1C147D5C0083B35F /* UIImageEffects.framework */; };
+		D3C0A7321D92939600B1AA23 /* UIImageEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C0A7311D92939600B1AA23 /* UIImageEffects.framework */; };
+		D3C0A7331D92939600B1AA23 /* UIImageEffects.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3C0A7311D92939600B1AA23 /* UIImageEffects.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3CCB8E31C12CA8E0090EF3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8E21C12CA8E0090EF3E /* AppDelegate.swift */; };
 		D3CCB8E51C12CA8E0090EF3E /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8E41C12CA8E0090EF3E /* PageContentViewController.swift */; };
 		D3CCB8E81C12CA8E0090EF3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB8E61C12CA8E0090EF3E /* Main.storyboard */; };
@@ -15,8 +16,22 @@
 		D3CCB8F81C134C870090EF3E /* ImageEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCB8F71C134C870090EF3E /* ImageEffectsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D3C0A7341D92939600B1AA23 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D3C0A7331D92939600B1AA23 /* UIImageEffects.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		D389BC7E1C147D5C0083B35F /* UIImageEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIImageEffects.framework; path = "build/Debug-iphoneos/UIImageEffects.framework"; sourceTree = "<group>"; };
+		D3C0A7311D92939600B1AA23 /* UIImageEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIImageEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB8DF1C12CA8E0090EF3E /* UIImageEffectsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIImageEffectsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB8E21C12CA8E0090EF3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CCB8E41C12CA8E0090EF3E /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D389BC7F1C147D5C0083B35F /* UIImageEffects.framework in Frameworks */,
+				D3C0A7321D92939600B1AA23 /* UIImageEffects.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +56,7 @@
 		D3CCB8D61C12CA8E0090EF3E = {
 			isa = PBXGroup;
 			children = (
-				D389BC7E1C147D5C0083B35F /* UIImageEffects.framework */,
+				D3C0A7311D92939600B1AA23 /* UIImageEffects.framework */,
 				D3CCB8E11C12CA8E0090EF3E /* Example */,
 				D3CCB8E01C12CA8E0090EF3E /* Products */,
 			);
@@ -78,6 +93,7 @@
 				D3CCB8DB1C12CA8E0090EF3E /* Sources */,
 				D3CCB8DC1C12CA8E0090EF3E /* Frameworks */,
 				D3CCB8DD1C12CA8E0090EF3E /* Resources */,
+				D3C0A7341D92939600B1AA23 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -95,11 +111,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Xin Hong";
 				TargetAttributes = {
 					D3CCB8DE1C12CA8E0090EF3E = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -171,8 +188,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -216,8 +235,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -236,6 +257,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -253,6 +275,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Xin-Hong.UIImageEffectsExample";
 				PRODUCT_NAME = UIImageEffectsExample;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -269,6 +292,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Xin-Hong.UIImageEffectsExample";
 				PRODUCT_NAME = UIImageEffectsExample;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -63,23 +63,23 @@ import Accelerate
 public extension UIImage {
     public func applyLightEffect() -> UIImage? {
         let tintColor = UIColor(white: 1, alpha: 0.3)
-        return applyBlur(blurRadius: 60, tintColor: tintColor, saturationDeltaFactor: 1.8)
+        return applyBlur(radius: 60, tintColor: tintColor, saturationDeltaFactor: 1.8)
     }
 
     public func applyExtraLightEffect() -> UIImage? {
         let tintColor = UIColor(white: 0.97, alpha: 0.82)
-        return applyBlur(blurRadius: 40, tintColor: tintColor, saturationDeltaFactor: 1.8)
+        return applyBlur(radius: 40, tintColor: tintColor, saturationDeltaFactor: 1.8)
     }
 
     public func applyDarkEffect() -> UIImage? {
         let tintColor = UIColor(white: 0.11, alpha: 0.73)
-        return applyBlur(blurRadius: 40, tintColor: tintColor, saturationDeltaFactor: 1.8)
+        return applyBlur(radius: 40, tintColor: tintColor, saturationDeltaFactor: 1.8)
     }
 
-    public func applyTintEffect(tintColor tintColor: UIColor) -> UIImage? {
+    public func applyTintEffect(with tintColor: UIColor) -> UIImage? {
         let effectColorAlpha: CGFloat = 0.6
         var effectColor = tintColor
-        let componentCount = CGColorGetNumberOfComponents(tintColor.CGColor)
+        let componentCount = tintColor.cgColor.numberOfComponents
 
         if componentCount == 2 {
             var b: CGFloat = 0
@@ -92,21 +92,21 @@ public extension UIImage {
                 effectColor = UIColor(red: r, green: g, blue: b, alpha: effectColorAlpha)
             }
         }
-        return applyBlur(blurRadius: 20, tintColor: effectColor, saturationDeltaFactor: -1)
+        return applyBlur(radius: 20, tintColor: effectColor, saturationDeltaFactor: -1)
     }
 
-    public func applyBlur(blurRadius blurRadius: CGFloat, tintColor: UIColor?, saturationDeltaFactor: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
+    public func applyBlur(radius blurRadius: CGFloat, tintColor: UIColor?, saturationDeltaFactor: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
         func preconditionsValid() -> Bool {
             if size.width < 1 || size.height < 1 {
                 print("error: invalid image size: (\(size.width, size.height). Both width and height must >= 1)")
                 return false
             }
-            if CGImage == nil {
+            if cgImage == nil {
                 print("error: image must be backed by a CGImage")
                 return false
             }
             if let maskImage = maskImage {
-                if maskImage.CGImage == nil {
+                if maskImage.cgImage == nil {
                     print("error: effectMaskImage must be backed by a CGImage")
                     return false
                 }
@@ -114,26 +114,26 @@ public extension UIImage {
             return true
         }
 
-        if !preconditionsValid() {
+        guard preconditionsValid() else {
             return nil
         }
 
         let hasBlur = blurRadius > CGFloat(FLT_EPSILON)
         let hasSaturationChange = fabs(saturationDeltaFactor - 1) > CGFloat(FLT_EPSILON)
 
-        let inputCGImage = CGImage!
+        let inputCGImage = cgImage!
         let inputImageScale = scale
-        let inputImageBitmapInfo = CGImageGetBitmapInfo(inputCGImage)
-        let inputImageAlphaInfo = CGImageAlphaInfo(rawValue: inputImageBitmapInfo.rawValue & CGBitmapInfo.AlphaInfoMask.rawValue)
+        let inputImageBitmapInfo = inputCGImage.bitmapInfo
+        let inputImageAlphaInfo = CGImageAlphaInfo(rawValue: inputImageBitmapInfo.rawValue & CGBitmapInfo.alphaInfoMask.rawValue)
 
         let outputImageSizeInPoints = size
-        let outputImageRectInPoints = CGRect(origin: CGPointZero, size: outputImageSizeInPoints)
+        let outputImageRectInPoints = CGRect(origin: CGPoint.zero, size: outputImageSizeInPoints)
 
-        let useOpaqueContext = inputImageAlphaInfo == .None || inputImageAlphaInfo == .NoneSkipLast || inputImageAlphaInfo == .NoneSkipFirst
+        let useOpaqueContext = inputImageAlphaInfo == .none || inputImageAlphaInfo == .noneSkipLast || inputImageAlphaInfo == .noneSkipFirst
         UIGraphicsBeginImageContextWithOptions(outputImageRectInPoints.size, useOpaqueContext, inputImageScale)
         let outputContext = UIGraphicsGetCurrentContext()
-        CGContextScaleCTM(outputContext, 1, -1)
-        CGContextTranslateCTM(outputContext, 0, -outputImageRectInPoints.height)
+        outputContext?.scaleBy(x: 1, y: -1)
+        outputContext?.translateBy(x: 0, y: -outputImageRectInPoints.height)
 
         if hasBlur || hasSaturationChange {
             var effectInBuffer = vImage_Buffer()
@@ -141,14 +141,14 @@ public extension UIImage {
             var inputBuffer: UnsafeMutablePointer<vImage_Buffer>
             var outputBuffer: UnsafeMutablePointer<vImage_Buffer>
 
-            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue | CGBitmapInfo.ByteOrder32Little.rawValue)
+            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
             var format = vImage_CGImageFormat(bitsPerComponent: 8,
                                                   bitsPerPixel: 32,
                                                     colorSpace: nil,
                                                     bitmapInfo: bitmapInfo,
                                                        version: 0,
                                                         decode: nil,
-                                               renderingIntent: .RenderingIntentDefault)
+                                               renderingIntent: .defaultIntent)
 
             let error = vImageBuffer_InitWithCGImage(&effectInBuffer, &format, nil, inputCGImage, vImage_Flags(kvImagePrintDiagnosticsToConsole))
             if error != kvImageNoError {
@@ -158,10 +158,10 @@ public extension UIImage {
             }
 
             vImageBuffer_Init(&scratchBuffer1, effectInBuffer.height, effectInBuffer.width, format.bitsPerPixel, vImage_Flags(kvImageNoFlags))
-            inputBuffer = withUnsafeMutablePointer(&effectInBuffer, { (address) -> UnsafeMutablePointer<vImage_Buffer> in
+            inputBuffer = withUnsafeMutablePointer(to: &effectInBuffer, { (address) -> UnsafeMutablePointer<vImage_Buffer> in
                 return address
             })
-            outputBuffer = withUnsafeMutablePointer(&scratchBuffer1, { (address) -> UnsafeMutablePointer<vImage_Buffer> in
+            outputBuffer = withUnsafeMutablePointer(to: &scratchBuffer1, { (address) -> UnsafeMutablePointer<vImage_Buffer> in
                 return address
             })
 
@@ -199,7 +199,7 @@ public extension UIImage {
 
                 let divisor: Int32 = 256
                 let matrixSize = floatingPointSaturationMatrix.count
-                var saturationMatrix = [Int16](count: matrixSize, repeatedValue: 0)
+                var saturationMatrix = [Int16](repeating: 0, count: matrixSize)
                 for i in 0..<matrixSize {
                     saturationMatrix[i] = Int16(round(floatingPointSaturationMatrix[i] * CGFloat(divisor)))
                 }
@@ -210,35 +210,35 @@ public extension UIImage {
                 outputBuffer = temp
             }
 
-            let cleanupBuffer: @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void = {(userData, buf_data) -> Void in
+            let cleanupBuffer: @convention(c) (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void = {(userData, buf_data) -> Void in
                 free(buf_data)
             }
             var effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, cleanupBuffer, nil, vImage_Flags(kvImageNoAllocate), nil)
             if effectCGImage == nil {
                 effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, nil, nil, vImage_Flags(kvImageNoFlags), nil)
-                free(inputBuffer.memory.data)
+                free(inputBuffer.pointee.data)
             }
             if let _ = maskImage {
-                CGContextDrawImage(outputContext, outputImageRectInPoints, inputCGImage)
+                outputContext?.draw(inputCGImage, in: outputImageRectInPoints)
             }
 
-            CGContextSaveGState(outputContext)
+            outputContext?.saveGState()
             if let maskImage = maskImage {
-                CGContextClipToMask(outputContext, outputImageRectInPoints, maskImage.CGImage)
+                outputContext?.clip(to: outputImageRectInPoints, mask: maskImage.cgImage!)
             }
-            CGContextDrawImage(outputContext, outputImageRectInPoints, effectCGImage.takeRetainedValue())
-            CGContextRestoreGState(outputContext)
+            outputContext?.draw(effectCGImage!.takeRetainedValue(), in: outputImageRectInPoints)
+            outputContext?.restoreGState()
 
-            free(outputBuffer.memory.data)
+            free(outputBuffer.pointee.data)
         } else {
-            CGContextDrawImage(outputContext, outputImageRectInPoints, inputCGImage)
+            outputContext?.draw(inputCGImage, in: outputImageRectInPoints)
         }
 
         if let tintColor = tintColor {
-            CGContextSaveGState(outputContext)
-            CGContextSetFillColorWithColor(outputContext, tintColor.CGColor)
-            CGContextFillRect(outputContext, outputImageRectInPoints)
-            CGContextRestoreGState(outputContext)
+            outputContext?.saveGState()
+            outputContext?.setFillColor(tintColor.cgColor)
+            outputContext?.fill(outputImageRectInPoints)
+            outputContext?.restoreGState()
         }
 
         let outputImage = UIGraphicsGetImageFromCurrentImageContext()
