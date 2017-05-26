@@ -1,4 +1,4 @@
-#UIImageEffects
+# UIImageEffects
 UIImageEffects is a quite lightweight  UIImage extension  for blurring image:
 
 ![Screenshot](Screenshots/UIImageEffects.gif "UIImageEffects")
@@ -7,36 +7,36 @@ UIImageEffects is a quite lightweight  UIImage extension  for blurring image:
 UIImageEffects is based on Apple's UIImage category in sample code [Blurring and Tinting an Image](https://developer.apple.com/library/ios/samplecode/UIImageEffects/Introduction/Intro.html#//apple_ref/doc/uid/DTS40013396).
 
 
-##How To Get Started
+## How To Get Started
 
-###Carthage
+### Carthage
 Specify "UIImageEffects" in your ```Cartfile```:
 ```ogdl 
 github "hongxinhope/UIImageEffects"
 ```
 
-###Usage
-##### Light Effect
+### Usage
+#### Light Effect
 ```swift 
 let lightEffectImage = originalImage.applyLightEffect()
 ```
 
-##### Extra Light Effect
+#### Extra Light Effect
 ```swift 
 let extraLightEffectImage = originalImage.applyExtraLightEffect()
 ```
 
-##### Dark Effect
+#### Dark Effect
 ```swift 
 let darkEffectImage = originalImage.applyDarkEffect()
 ```
 
-#####Tint Effect
+#### Tint Effect
 ```swift 
 let tintColorImage = originalImage.applyTintEffect(with: UIColor.cyan)
 ```
 
-##### Custom
+#### Custom
 ```swift 
 let customEffectImage = originalImage.applyBlur(radius: 30, tintColor: UIColor(white: 1, alpha: 0.3), saturationDeltaFactor: 1.5)
 ```
